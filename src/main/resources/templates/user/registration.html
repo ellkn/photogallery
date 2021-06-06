@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="Registration">User Login Page</title>
+    <link rel="stylesheet" href="../../static/css/style.css"/>
+</head>
+<body>
+<body>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form th:action="@{/user/registration}" method="post" th:object="${userForm}">
+            <h1 th:text="${'User Registration'}">Create Account</h1>
+
+            <input type="email" th:field="*{email}" placeholder="Email"/> <span th:errors="*{email}"></span>
+            <input type="text" th:field="*{userName}" placeholder="username"/> <span th:errors="*{userName}"></span>
+            <input type="text" th:field="*{firstName}" placeholder="First Name"/> <span th:errors="*{firstName}"></span>
+            <input type="text" th:field="*{lastName}" placeholder="Last Name"/> <span th:errors="*{lastName}"></span>
+            <input type="date" th:field="*{dateOfBirth}" placeholder="Date of Birth"/> <span th:errors="*{dateOfBirth}"></span>
+            <input type="password" th:field="*{password}" placeholder="Password"/>
+            <input type="password" th:field="*{passwordConfim}" placeholder="PasswordConfirm">&nbsp;<span th:errors="*{passwordConfim}"></span>
+            <button>Sign Up</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="@{/login}" method="post">
+            <h1 th:text="${'User Login Page'}">Sign in</h1>
+            <input type="email" placeholder="Email"/>
+            <input type="password" placeholder="Password"/>
+            <a href="#">Forgot your password?</a>
+            <button>Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+                <button class="ghost" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../static/js/style.js"></script>
+</body>
+</html>

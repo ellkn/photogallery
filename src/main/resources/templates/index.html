@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title data-th-text="#{index.title}">Insert title here</title>
+    <link rel="stylesheet" href="../static/css/style.css"/>
+</head>
+<body>
+<div class="container" id="container">
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend</h1>
+                <h2>it's "Blink"</h2>
+                <p>(RGR - photogallery)</p>
+            </div>
+        </div>
+    </div>
+    <th:block layout:fragment="content">
+        <ul>
+            <li><a th:href="@{/user/profile}">Профиль пользователя</a>
+            <li><a th:href="@{/user/list}">Поиск пользователей</a>
+            <li><a th:href="@{/user/album}">Фотоальбомы</a>
+            <li><a th:href="@{/user/albumlist}">Поиск записей</a>
+        </ul>
+    </th:block>
+
+</div>
+<footer>
+    <p>
+    </p>
+</footer>
+<script src="../static/js/style.js"></script>
+</body>
+</html>

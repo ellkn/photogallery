@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Photogallery</title>
+    <link rel="stylesheet" href="../../static/css/style.css"/>
+</head>
+<body>
+<div class="menu">
+    <div class="rightMenu">
+        <div sec:authorize="isAuthenticated()">
+            <form id="logoutForm" action="#" th:action="@{/logout}" method="post">
+                <a class="logout" href="#" th:href="@{/logout}">Logout</a>
+            </form>
+        </div>
+        <div sec:authorize="isAnonymous()">
+            <a class="logout" href="#" th:href="@{/user/registration}">Registration</a>
+            &nbsp;<a class="logout" href="#" th:href="@{user/registration}">Login</a>
+        </div>
+    </div>
+    <div class="sep"></div>
+</div>
+<header class="site-header">
+    <div class="header-content">
+        <h2><a th:href="@{/}">BLINK</a></h2>
+    </div>
+</header>
+<div class="content">
+    <th:block layout:fragment="content" />
+</div>
+<th:block layout:fragment="jsscript" />
+</body>
+</html>
