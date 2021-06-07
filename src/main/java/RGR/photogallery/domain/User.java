@@ -2,13 +2,19 @@ package RGR.photogallery.domain;
 
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.*;
-
+@Entity
+@Table(name = "user")
 public class User implements Serializable {
     private static final long serialVersionUID = 6216344084865363418L;
 
-    @Id
+    @javax.persistence.Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long userId;
     private String email;
     private String firstName;

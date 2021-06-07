@@ -15,8 +15,8 @@ public class IndexController {
 
     @GetMapping("/")
     public String indexPage(Model model, Locale locale) {
-        System.out.println("Title: " +
-                messageSource.getMessage("index.title", null, locale));
+//        System.out.println("Title: " +
+//                messageSource.getMessage("index.title", null, locale));
 
         return "index.html";
     }

@@ -19,7 +19,7 @@ public class UserRegistrationForm {
     @NotBlank
     private String lastName;
 
-    @NotBlank
+    @NotNull
     private Date dateOfBirth;
 
     @NotBlank

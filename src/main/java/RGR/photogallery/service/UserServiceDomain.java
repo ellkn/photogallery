@@ -12,19 +12,19 @@ import java.util.List;
 public class UserServiceDomain implements UserService {
 
     @Autowired
-    UserRepository userService;
+    UserRepository userRepository;
 
     @Override
     public List<User> getList() {
         List<User> users = new ArrayList<>();
-        userService.findAll().forEach(users::add);
+        userRepository.findAll().forEach(users::add);
 
         return users;
     }
 
     @Override
     public boolean isUserWithEmailExist(String email) {
-        return userService.countByEmail(email) != 0 ? true : false;
+        return userRepository.countByEmail(email) != 0 ? true : false;
     }
 
 }

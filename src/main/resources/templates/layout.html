@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}">Photogallery</title>
-    <link rel="stylesheet" href="../../static/css/style.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
 <div class="menu">
@@ -18,7 +18,7 @@
         </div>
         <div sec:authorize="isAnonymous()">
             <a class="logout" href="#" th:href="@{/user/registration}">Registration</a>
-            &nbsp;<a class="logout" href="#" th:href="@{user/registration}">Login</a>
+            &nbsp;<a class="logout" href="#" th:href="@{user/login}">Login</a>
         </div>
     </div>
     <div class="sep"></div>
@@ -28,9 +28,11 @@
         <h2><a th:href="@{/}">BLINK</a></h2>
     </div>
 </header>
-<div class="content">
-    <th:block layout:fragment="content" />
+<div class="container">
+    <th:block layout:fragment="container" />
 </div>
 <th:block layout:fragment="jsscript" />
+
+<script src="/js/style.js"></script>
 </body>
 </html>

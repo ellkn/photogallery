@@ -46,12 +46,12 @@ a {
 }
 a:link,a:visited {
     text-decoration: none;
-    color:#0871eb
+    color:#000000;
 }
 
 panel{
     font-weight: bold;
-    margin: 0;;
+    margin: 0;
 }
 button {
     border-radius: 20px;
@@ -318,7 +318,7 @@ div.menu {
 }
 
 div.menu a:link, div.menu a:visited {
-    color: #fff;
+    color: #FF416C;
 }
 
 div.menu a:hover {
@@ -326,7 +326,7 @@ div.menu a:hover {
 }
 
 div.menu div.mainMenu, div.menu div.rightMenu {
-    color: #fff;
+    color: #FF416C;
 }
 
 div.rightMenu a.logout {
@@ -348,8 +348,8 @@ form#logoutForm {
 
 /* END MENU */
 .site-header {
-    background: none repeat scroll 0 0 #3E5B76;
-    background: linear-gradient(to right, #3E5B76, #718599);
+    background: none repeat scroll 0 0 #FF416C;
+    background: linear-gradient(to right,#FF4B2B, #FF416C);
 }
 
 .header-content {
