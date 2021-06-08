@@ -8,26 +8,26 @@
     <title data-th-text="#{index.title}">Title</title>
 </head>
 <body>
-    <th:block layout:fragment="container">
+<th:block layout:fragment="container">
 
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend</h1>
-                    <h2>it's "Blink"</h2>
-                    <p>(RGR - photogallery)</p>
-                </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend</h1>
+                <h2>it's "Blink"</h2>
+                <p>(RGR - photogallery)</p>
             </div>
         </div>
+    </div>
 
-        <ul>
-            <li><a th:href="@{/user/profile}">Профиль пользователя</a>
-            <li><a th:href="@{/user/search}">Поиск пользователей</a>
-            <li><a th:href="@{/user/album}">Фотоальбомы</a>
-            <li><a th:href="@{/user/albumlist}">Поиск записей</a>
-            <li><a th:href="@{/user/list}">Список пользователей (для админов)</a>
-        </ul>
-    </th:block>
+    <ul>
+        <li><a th:href="@{/user/profile}">Профиль пользователя</a>
+        <li><a th:href="@{/user/search}">Поиск пользователей</a>
+        <li><a th:href="@{/user/album}">Фотоальбомы</a>
+        <li><a th:href="@{/user/albumlist}">Поиск записей</a>
+        <li><a th:href="@{/user/list}">Список пользователей (для админов)</a>
+    </ul>
+</th:block>
 
 </body>
 </html>

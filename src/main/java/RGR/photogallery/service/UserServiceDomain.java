@@ -3,6 +3,7 @@ package RGR.photogallery.service;
 import RGR.photogallery.domain.User;
 import RGR.photogallery.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,4 +28,23 @@ public class UserServiceDomain implements UserService {
         return userRepository.countByEmail(email) != 0 ? true : false;
     }
 
+
+    @Override
+    public boolean addUser(String username, String firstName, String lastName, String email, String date, String password){
+        User user = new User();
+
+        user.setUsername(username);
+        user.setFirstname(firstName);
+        user.setLastname(lastName);
+        user.setEmail(email);
+        user.setDate(date);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(bCryptPasswordEncoder.encode(password));
+        user.setEnabled(false);
+        user.setRoles("USER");
+
+        userRepository.save(user);
+
+        return true;
+    }
 }

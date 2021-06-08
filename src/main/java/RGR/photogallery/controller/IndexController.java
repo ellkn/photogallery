@@ -18,6 +18,6 @@ public class IndexController {
 //        System.out.println("Title: " +
 //                messageSource.getMessage("index.title", null, locale));
 
-        return "index.html";
+        return "index";
     }
 }
