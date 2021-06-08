@@ -19,8 +19,8 @@ public class UserRegistrationForm {
     @NotBlank
     private String lastName;
 
-    @NotNull
-    private Date date;
+    @NotBlank
+    private String date;
 
     @NotBlank
     @Size(min = 5)
@@ -53,10 +53,10 @@ public class UserRegistrationForm {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
     public String getPassword() {

@@ -20,9 +20,7 @@ public class User implements Serializable {
     private String lastname;
     private String username;
     private String password;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private String date;
     private boolean enabled;
     private String role;
     private Integer imageid;
@@ -30,7 +28,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Long id, String email, String firstname, String lastname, String username, String password, Date date, boolean enabled, String role, Integer imageid) {
+    public User(Long id, String email, String firstname, String lastname, String username, String password, String date, boolean enabled, String role, Integer imageid) {
         this.id = id;
         this.email = email;
         this.firstname = firstname;
@@ -91,11 +89,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
