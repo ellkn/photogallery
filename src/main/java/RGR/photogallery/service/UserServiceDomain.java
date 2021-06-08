@@ -47,4 +47,17 @@ public class UserServiceDomain implements UserService {
 
         return true;
     }
+//    @Override
+//    public boolean activateUser(String code) {
+//        User user = userRepository.findByActivationCode(code);
+//
+//        if (user == null) {
+//            return false;
+//        }
+//        user.setActivationCode(null);
+//        user.setActive(true);
+//        userRepository.save(user);
+//
+//        return true;
+//    }
 }

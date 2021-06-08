@@ -10,17 +10,19 @@ import java.util.Set;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imageId;
+    private Long id;
     private String title;
-    private Date uploadDate;
-    private Date deletedOn;
-  //  private User deletedBy;
-    private String fullPath;
-    private String fileName;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
+    private String uploaddate;
+    private String filename;
     private String tags;
-    private BigDecimal size;
-   // private List<Comment> comments;
-    //private Album album;
+    @OneToMany(mappedBy = "image", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<Comment> comments;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "album_id")
+    private Album album;
 
     public Image() {
     }
