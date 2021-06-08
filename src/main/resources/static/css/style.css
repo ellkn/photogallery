@@ -80,7 +80,7 @@ button.ghost {
     border-color: #FFFFFF;
 }
 form {
-    background-color: #FFFFFF;
+    /*background-color: #FFFFFF;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,9 +126,9 @@ text-input{
     0 10px 10px rgba(0,0,0,0.22);
     position: relative;
     overflow: hidden;
-    width: 768px;
+    width: 750px;
     max-width: 100%;
-    min-height: 480px;
+    min-height: 500px;
 }
 
 .form-container {
@@ -349,8 +349,8 @@ form#logoutForm {
 /* END MENU */
 .site-header {
     display: flex;
-    background: none repeat scroll 0 0 #FF416C;
-    background: linear-gradient(to right,#FF4B2B, #FF416C);
+    /*background: none repeat scroll 0 0 #FF416C;*/
+    /*background: linear-gradient(to right,#FF4B2B, #FF416C);*/
 }
 
 .header-content {
@@ -361,7 +361,7 @@ form#logoutForm {
 }
 
 .header-content a {
-    color: white;
+    color: #FF4B2B;
     font-size: 2em;
     text-decoration: none;
 }
@@ -375,7 +375,7 @@ form#logoutForm {
 */
 .datatable {
     width:100%;
-    border-top:1px solid grey;
+    border-top:1px solid #808080;
     border-bottom:1px solid grey;
     border-collapse:separate;
     border-spacing:0;
