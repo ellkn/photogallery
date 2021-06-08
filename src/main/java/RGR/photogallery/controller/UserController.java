@@ -57,7 +57,7 @@ public class UserController {
             model.addObject("userForm", userForm);
             model.setViewName("/user/registration");
         } else {
-
+            userService.addUser(userForm.getUserName(), userForm.getFirstName(), userForm.getLastName(), userForm.getEmail(),userForm.getDate(), userForm.getPassword());
             model.setViewName("redirect:/");
         }
         return model;
