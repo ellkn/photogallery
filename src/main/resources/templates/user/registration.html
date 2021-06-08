@@ -18,9 +18,12 @@
             <input type="text" th:field="*{userName}" placeholder="username"/> <span th:errors="*{userName}"></span>
             <input type="text" th:field="*{firstName}" placeholder="First Name"/> <span th:errors="*{firstName}"></span>
             <input type="text" th:field="*{lastName}" placeholder="Last Name"/> <span th:errors="*{lastName}"></span>
-            <input type="date" th:field="*{dateOfBirth}" placeholder="Date of Birth"/> <span th:errors="*{dateOfBirth}"></span>
+            <input type="date" th:field="*{date}" placeholder="Date of Birth"/> <span th:errors="*{date}"></span>
             <input type="password" th:field="*{password}" placeholder="Password"/>
             <input type="password" th:field="*{passwordConfim}" placeholder="PasswordConfirm">&nbsp;<span th:errors="*{passwordConfim}"></span>
+<!--            <div class="form-group">-->
+<!--                <input type="submit" name="login-submit" id="login-submit" class="stdBtn" value="Log In">-->
+<!--            </div>-->
             <button>Sign Up</button>
         </form>
     </div>

@@ -1,55 +1,54 @@
 package RGR.photogallery.domain;
 
-import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
+
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
     private static final long serialVersionUID = 6216344084865363418L;
 
-    @javax.persistence.Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
     private String email;
-    private String firstName;
-    private String lastName;
-    private String userName;
+    private String firstname;
+    private String lastname;
+    private String username;
     private String password;
-    private Date dateOfBirth;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    private Date date;
     private boolean enabled;
-    private String token;
-    private String roles;
-    private Integer imageId;
+    private String role;
+    private Integer imageid;
 
     public User() {
     }
 
-    public User(Long userId, String email, String firstName, String lastName, String userName, String password, Date dateOfBirth, boolean enabled, String token, String roles, Integer imageId) {
-        this.userId = userId;
+    public User(Long id, String email, String firstname, String lastname, String username, String password, Date date, boolean enabled, String role, Integer imageid) {
+        this.id = id;
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
         this.password = password;
-        this.dateOfBirth = dateOfBirth;
+        this.date = date;
         this.enabled = enabled;
-        this.token = token;
-        this.roles = roles;
-        this.imageId = imageId;
+        this.role = role;
+        this.imageid = imageid;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -60,28 +59,28 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -92,12 +91,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public boolean isEnabled() {
@@ -108,29 +107,21 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public String getRoles() {
-        return roles;
+        return role;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setRoles(String role) {
+        this.role = role;
     }
 
     public Set<Role> getUserRoles() {
         Set<Role> userRoles = new HashSet<>();
 
-        if (roles != null && roles.length() > 0) {
+        if (role != null && role.length() > 0) {
 
-            String[] rolesArr = roles.split(",");
-            for (String role : rolesArr) {
+            String[] roleArr = role.split(",");
+            for (String role : roleArr) {
                 userRoles.add(Role.valueOf(role));
             }
         }
@@ -168,14 +159,14 @@ public class User implements Serializable {
         Set<Role> roleSet = this.getUserRoles();
         roleSet.add(role);
 
-        this.roles = convertRoleSetToString(roleSet);
+        this.role = convertRoleSetToString(roleSet);
     }
 
     public void removeRole(Role role) {
         Set<Role> roleSet = this.getUserRoles();
         roleSet.remove(role);
 
-        this.roles = convertRoleSetToString(roleSet);
+        this.role = convertRoleSetToString(roleSet);
     }
 
     private String convertRoleSetToString(Set<Role> roleSet) {
@@ -185,30 +176,30 @@ public class User implements Serializable {
         return String.join(",", roleArr);
     }
 
-    public String getFullName() {
-        return this.userName;
+    public String getFullname() {
+        return this.username;
     }
 
 
     public Integer getImageId() {
-        return imageId;
+        return imageid;
     }
 
-    public void setImageId(Integer imageId) {
-        this.imageId = imageId;
+    public void setImageId(Integer imageid) {
+        this.imageid = imageid;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "id=" + id +
                 ", email='" + email + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", imageId=" + imageId +
+                ", date=" + date +
+                ", imageid=" + imageid +
                 '}';
     }
 
@@ -232,6 +223,6 @@ public class User implements Serializable {
     }
     @Override
     public int hashCode() {
-        return Objects.hash(userId, email, password);
+        return Objects.hash(id, email, password);
     }
 }

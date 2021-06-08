@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User list</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 
+<body>
+<th:block layout:fragment="container">
+
+    <h1>User List</h1>
+
+    <table class="datatable">
+        <tr class="column-header">
+            <td>ID</td>
+            <td>Email</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>username</td>
+            <td>Enabled</td>
+            <td>Roles</td>
+        </tr>
+
+        <th:block th:each="user: ${users}">
+            <tr>
+                <td th:text="${user.id}">id</td>
+                <td th:text="${user.email}">email</td>
+                <td th:text="${user.firstname}">firstName</td>
+                <td th:text="${user.lastname}">lastName</td>
+                <td th:text="${user.username}">username</td>
+                <td th:text="${user.enabled}">enabled</td>
+                <td th:text="${user.roles}">Roles</td>
+            </tr>
+        </th:block>
+
+
+    </table>
+
+</th:block>
 </body>
+
 </html>

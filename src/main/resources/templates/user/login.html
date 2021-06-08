@@ -14,9 +14,20 @@
     <div class="form-container sign-in-container">
         <form th:action="@{/login}" method="post">
             <h1 th:text="${'User Login Page'}">Sign in</h1>
-            <input type="email" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">Invalid username or password.
+                </div>
+            </div>
+            <div th:if="${param.logout}">
+                <div class="alert alert-info">You have been logged out.</div>
+            </div>
+            <input type="email" name="username" class="form-control"  autofocus="autofocus" placeholder="Email"/>
+            <input type="password" name="password" class="form-control" placeholder="Password"/>
             <a href="#">Forgot your password?</a>
+<!--            <div class="form-group">-->
+<!--                <input type="submit" name="login-submit" id="login-submit"-->
+<!--                       class="stdBtn" value="Log In">-->
+<!--            </div>-->
             <button>Sign In</button>
         </form>
     </div>
