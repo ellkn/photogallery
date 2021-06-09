@@ -6,6 +6,7 @@ import RGR.photogallery.form.UserRegistrationFormValidator;
 import RGR.photogallery.repository.UserRepository;
 import RGR.photogallery.service.AlbumService;
 import RGR.photogallery.service.UserService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -88,6 +89,24 @@ public class UserController {
             return "user/profile";
         } else
             return "user/profile";
+    }
+
+    @GetMapping("/change_avatar_page")
+    public String changeAvaPage(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Optional<User> user = userRepository.findByEmail(auth.getName());
+        model.addAttribute("user", user.get());
+
+        return "user/changeAvatarPage";
+    }
+
+    @PostMapping("/change_avatar")
+    public ModelAndView changeAva(ModelAndView model, @ModelAttribute("user") User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user1 = userRepository.findByEmail(auth.getName()).get();
+        userService.changeAvatar(user1.getId(), user.getImage());
+        model.setViewName("redirect:/user/profile");
+        return model;
     }
 
 

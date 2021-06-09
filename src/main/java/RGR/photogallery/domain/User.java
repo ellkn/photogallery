@@ -23,12 +23,12 @@ public class User implements Serializable {
     private String date;
     private boolean enabled;
     private String role;
-    private Integer imageid;
+    private String image;
 
     public User() {
     }
 
-    public User(Long id, String email, String firstname, String lastname, String username, String password, String date, boolean enabled, String role, Integer imageid) {
+    public User(Long id, String email, String firstname, String lastname, String username, String password, String date, boolean enabled, String role, String image) {
         this.id = id;
         this.email = email;
         this.firstname = firstname;
@@ -38,7 +38,7 @@ public class User implements Serializable {
         this.date = date;
         this.enabled = enabled;
         this.role = role;
-        this.imageid = imageid;
+        this.image = image;
     }
 
     public Long getId() {
@@ -182,13 +182,12 @@ public class User implements Serializable {
         return this.username;
     }
 
-
-    public Integer getImageId() {
-        return imageid;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageId(Integer imageid) {
-        this.imageid = imageid;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -201,7 +200,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", date=" + date +
-                ", imageid=" + imageid +
+                ", image=" + image +
                 '}';
     }
 

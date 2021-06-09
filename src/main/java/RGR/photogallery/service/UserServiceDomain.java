@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceDomain implements UserService {
@@ -47,6 +48,7 @@ public class UserServiceDomain implements UserService {
         user.setPassword(bCryptPasswordEncoder.encode(password));
         user.setEnabled(true);
         user.setRoles("USER");
+        user.setImage("default_avatar.jpg");
 
         userRepository.save(user);
 
@@ -66,15 +68,14 @@ public class UserServiceDomain implements UserService {
         } else return false;
     }
 
-//    @Override
-//    public UserService loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = userRepository.findByUsername(username);
-//
-//        if (user == null) {
-//            throw new UsernameNotFoundException("User not found");
-//        }
-//
-//        return user;
-//    }
 
+    @Override
+    public boolean changeAvatar(Long id, String image) {
+        if (image != null) {
+            User user = userRepository.findById(id).get();
+            user.setImage(image);
+            userRepository.save(user);
+            return true;
+        } else return false;
+    }
 }

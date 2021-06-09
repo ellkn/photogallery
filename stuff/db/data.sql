@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS user
     `password`  varchar(64)  NOT NULL,
     `enabled`   bool,
     `role`      varchar(128) DEFAULT 'USER',
-    `imageid`   int,
+    `imageid`   varchar(128),
     PRIMARY KEY (`id`)
 );
 -- password 12345

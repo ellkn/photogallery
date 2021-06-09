@@ -416,7 +416,35 @@ form#logoutForm {
 .datatable tr:hover {
     background-color: #ffffdd
 }
-/*
-*	END Table DATATABLE
-*/
+
+#avatar_image{
+    width: 250px;
+    height: 280px;
+}
+
+#album_href{
+    border-bottom: 1px black solid;
+    border-top: 1px black solid;
+    font-size: 17px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+#album_href:hover{
+    opacity: .7;
+    transition: .5s;
+}
+
+.menu_href{
+    font-size: 17px;
+}
+
+.menu_href:hover{
+    opacity: .7;
+    transition: .5s;
+}
+
+.input_image{
+    width: 100%;
+}
 
