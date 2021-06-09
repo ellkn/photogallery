@@ -7,25 +7,62 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "image")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User author;
-    private String uploaddate;
-    private String filename;
     private String tags;
-    @OneToMany(mappedBy = "image", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Comment> comments;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "album_id")
-    private Album album;
+    private Long albumId;
+    private String file;
 
-    public Image() {
+
+    public Image() {}
+    public Image(String title, String tags, String file, Long albumId) {
+        this.title = title;
+        this.tags = tags;
+        this.albumId = albumId;
+        this.file = file;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    public Long getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(Long albumId) {
+        this.albumId = albumId;
+    }
 }

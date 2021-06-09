@@ -2,6 +2,9 @@ package RGR.photogallery.spring;
 
 import RGR.photogallery.domain.Role;
 import RGR.photogallery.domain.User;
+import RGR.photogallery.mail.MailSender;
+import RGR.photogallery.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -59,5 +62,6 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
         return user.isEnabled();
     }
+
 
 }

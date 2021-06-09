@@ -1,6 +1,7 @@
 package RGR.photogallery.service;
 
 import RGR.photogallery.domain.User;
+import RGR.photogallery.mail.MailSender;
 import RGR.photogallery.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,9 @@ public class UserServiceDomain implements UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    private MailSender mailSender;
 
     @Override
     public List<User> getList() {
@@ -45,19 +49,22 @@ public class UserServiceDomain implements UserService {
 
         userRepository.save(user);
 
+        String message = String.format("Пожалуйста, для активации аккаунта перейдите по ссылке: http://localhost:8080/activate/%s",
+                user.getId());
+        mailSender.send(user.getEmail(), "Activation Code", message);
+
         return true;
     }
-//    @Override
-//    public boolean activateUser(String code) {
-//        User user = userRepository.findByActivationCode(code);
-//
-//        if (user == null) {
-//            return false;
-//        }
-//        user.setActivationCode(null);
-//        user.setActive(true);
-//        userRepository.save(user);
-//
-//        return true;
-//    }
+    @Override
+    public boolean activateUser(String code) {
+        User user = userRepository.findByEnabled(code);
+
+        if (user == null) {
+            return false;
+        }
+
+        user.setEnabled(true);
+        userRepository.save(user);
+        return true;
+    }
 }

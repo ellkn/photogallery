@@ -4,27 +4,22 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "comment")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User author;
+    private Long userId;
     @NotBlank
     private String text;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "image_id")
-    private Image image;
 
     public Comment() {
     }
 
-    public Comment(Long id, User author, @NotBlank String text, Image image) {
+    public Comment(Long id, @NotBlank String text, Long userId) {
         this.id = id;
-        this.author = author;
+        this.userId = userId;
         this.text = text;
-        this.image = image;
     }
 
     public Long getId() {
@@ -35,14 +30,6 @@ public class Comment {
         this.id = id;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
     public String getText() {
         return text;
     }
@@ -51,14 +38,11 @@ public class Comment {
         this.text = text;
     }
 
-    public Image getImage() {
-        return image;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
-    }
-    public String getAuthorName() {
-        return author != null ? author.getUsername() : "<none>";
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

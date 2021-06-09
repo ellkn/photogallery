@@ -19,7 +19,4 @@ public class ImageServiceDomain implements ImageService{
     public void delete(Image image) {
         imageRepository.delete(image);
     }
-    public Page<Image> findByAlbum(Album album, Pageable pageable) {
-        return imageRepository.findImagesByAlbum(album, pageable);
-    }
 }

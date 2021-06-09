@@ -10,8 +10,6 @@ import java.util.List;
 
 
 public interface ImageRepository extends CrudRepository<Image, Long> {
-    List<Image> findByTag(String tag);
-    Page<Image> findImagesByAlbum(Album album, Pageable pageable);
 
 
 }

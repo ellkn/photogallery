@@ -16,7 +16,7 @@ public class MailConfig {
         javaMailSender.setHost("smtp.gmail.com");
         javaMailSender.setPort(465);
         javaMailSender.setUsername("rgrphotogallery@gmail.com");
-        javaMailSender.setUsername("rgrphoto1234"); //создать
+        javaMailSender.setPassword("rgrphoto1234"); //создать
 
         Properties property = javaMailSender.getJavaMailProperties();
 
