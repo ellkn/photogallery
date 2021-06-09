@@ -20,17 +20,13 @@ VALUES ('admin@photo.ru', 'AdminName', 'AdminLastName', '2001-01-01', 'Admin',
 
 CREATE TABLE IF NOT EXISTS album
 (
-    `id` INT NOT NULL AUTO_INCREMENT,
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `title` VARCHAR(45) NOT NULL,
-    `isShared` TINYINT NULL DEFAULT 0,
-    `userId` INT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `userId_idx` (`userId` ASC) VISIBLE,
-    CONSTRAINT `userId`
-        FOREIGN KEY (`userId`)
+    `is_shared` bool,
+    `user_id` INT NOT NULL,
+        FOREIGN KEY (`user_id`)
             REFERENCES user (`id`)
             ON DELETE NO ACTION
-            ON UPDATE NO ACTION
 );
 CREATE TABLE IF NOT EXISTS comment
 (

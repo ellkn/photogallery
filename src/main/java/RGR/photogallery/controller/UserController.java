@@ -1,9 +1,14 @@
 package RGR.photogallery.controller;
 
+import RGR.photogallery.domain.User;
 import RGR.photogallery.form.UserRegistrationForm;
 import RGR.photogallery.form.UserRegistrationFormValidator;
+import RGR.photogallery.repository.UserRepository;
+import RGR.photogallery.service.AlbumService;
 import RGR.photogallery.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -19,7 +25,13 @@ public class UserController {
     UserService userService;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private UserRegistrationFormValidator userFormValidator;
+
+    @Autowired
+    private AlbumService albumService;
 
     @InitBinder("userForm")
     private void initBinder(WebDataBinder binder) {
@@ -67,16 +79,16 @@ public class UserController {
         return model;
     }
     @GetMapping("/user/profile")
-    public ModelAndView profile(ModelAndView model) {
-        model.setViewName("/user/profile");
-        // getUserById(id);
-        return model;
+    public String profile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Optional<User> user = userRepository.findByEmail(auth.getName());
+        model.addAttribute("user", user.get());
+        if (albumService.allAlbumByUser(user.get().getId()) != null) {
+            model.addAttribute("albums", albumService.allAlbumByUser(user.get().getId()));
+            return "user/profile";
+        } else
+            return "user/profile";
     }
-    @PostMapping("/user/profile")
-    public ModelAndView profilePost(ModelAndView model) {
-        model.setViewName("/user/profile");
-        // getUserById(id);
-        return model;
-    }
+
 
 }

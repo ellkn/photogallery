@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+</head>
+<body>
+<th:block layout:fragment="container">
+  <div class="overlay-panel_1">
+    <h2>Photoalbum</h2>
+    <th:block>
+      <td>
+        <tr th:href="img">Photo</tr><br>
+        <tr th:text="${user.username}">username</tr><br>
+        <tr th:text="${user.email}">email</tr>
+      </td>
+    </th:block>
+
+  </div>
+  <div class="overlay-panel overlay-right">
+    <form id="form_add_album" th:action="@{/addAlbum}" method="post" th:object="${album}">
+      <input type="text" th:field="*{title}" placeholder="Название"/>
+      <button id="add_album" type="submit">Добавить альбом</button>
+    </form>
+  </div>
+</th:block>
+</body>
+</html>

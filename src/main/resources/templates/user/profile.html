@@ -12,7 +12,7 @@
         <div class="overlay-panel_1">
             <h2>Photoalbum</h2>
             понять как сделать правильно вывод фото и информации конкретно по юзеру
-            <th:block th:each ="user: ${users}">
+            <th:block>
                 <td>
                     <tr th:href="img">Photo</tr>
                     <tr th:text="${user.username}">username</tr>
@@ -22,12 +22,14 @@
 
         </div>
         <div class="overlay-panel overlay-right">
-            здесь пойдет список альбомов
-            <th:block th:each ="user: ${album}">
-                <td>
-                    <tr th:href="img">Photo</tr>
-                </td>
+            здесь пойдет список альбомов<br>
+            <th:block th:each="album: ${albums}">
+                <tr>
+                    <td><a th:text="${album.title}" th:href="@{/album/{id}(id = ${album.id})}">title</a></td>
+                </tr>
             </th:block>
+
+            <button id="add_album_page" type="submit"><a th:href="@{/add_album_page}">Добавить альбом</a></button>
         </div>
 </th:block>
 </body>
