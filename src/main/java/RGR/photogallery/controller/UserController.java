@@ -66,4 +66,17 @@ public class UserController {
 
         return model;
     }
+    @GetMapping("/user/profile")
+    public ModelAndView profile(ModelAndView model) {
+        model.setViewName("/user/profile");
+        // getUserById(id);
+        return model;
+    }
+    @PostMapping("/user/profile")
+    public ModelAndView profilePost(ModelAndView model) {
+        model.setViewName("/user/profile");
+        // getUserById(id);
+        return model;
+    }
+
 }

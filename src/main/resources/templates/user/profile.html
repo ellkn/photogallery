@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
 </head>
 <body>
+<th:block layout:fragment="container">
+        <div class="overlay-panel_1">
+            <h2>Photoalbum</h2>
+            понять как сделать правильно вывод фото и информации конкретно по юзеру
+            <th:block th:each ="user: ${users}">
+                <td>
+                    <tr th:href="img">Photo</tr>
+                    <tr th:text="${user.username}">username</tr>
+                    <tr th:text="${user.email}">email</tr>
+                </td>
+            </th:block>
 
+        </div>
+        <div class="overlay-panel overlay-right">
+            здесь пойдет список альбомов
+            <th:block th:each ="user: ${album}">
+                <td>
+                    <tr th:href="img">Photo</tr>
+                </td>
+            </th:block>
+        </div>
+</th:block>
 </body>
 </html>
