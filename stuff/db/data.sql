@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS image
     INDEX `albumId_idx` (`albumId` ASC) VISIBLE,
     CONSTRAINT `albumId`
         FOREIGN KEY (`albumId`)
-            REFERENCES `photogallery`.`album` (`id`)
+            REFERENCES album (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
@@ -69,12 +69,12 @@ CREATE TABLE IF NOT EXISTS commentimage
     INDEX `imageId_idx` (`imageId` ASC) VISIBLE,
     CONSTRAINT `commentId`
         FOREIGN KEY (`commentId`)
-            REFERENCES `photogallery`.`comment` (`id`)
+            REFERENCES comment (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     CONSTRAINT `imageId`
         FOREIGN KEY (`imageId`)
-            REFERENCES `photogallery`.`image` (`id`)
+            REFERENCES image (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
