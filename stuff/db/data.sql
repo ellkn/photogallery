@@ -20,37 +20,38 @@ VALUES ('admin@photo.ru', 'AdminName', 'AdminLastName', '2001-01-01', 'Admin',
 
 CREATE TABLE IF NOT EXISTS album
 (
-    `id`       INT         NOT NULL AUTO_INCREMENT,
-    `userId`   INT         NOT NULL,
-    `title`    VARCHAR(64) NOT NULL,
-    `isShared` TINYINT     NULL DEFAULT 0,
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(45) NOT NULL,
+    `isShared` TINYINT NULL DEFAULT 0,
+    `userId` INT NULL,
     PRIMARY KEY (`id`),
-    INDEX `userid_idx` (`userId` ASC) VISIBLE,
-    CONSTRAINT `userid`
-        FOREIGN KEY (`userId`) REFERENCES `photogallery`.`user` (`id`)
+    INDEX `userId_idx` (`userId` ASC) VISIBLE,
+    CONSTRAINT `userId`
+        FOREIGN KEY (`userId`)
+            REFERENCES user (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
 CREATE TABLE IF NOT EXISTS comment
 (
-    `id`     INT          NOT NULL AUTO_INCREMENT,
-    `text`   VARCHAR(500) NOT NULL,
-    `userId` INT          NOT NULL,
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `text` VARCHAR(500) NOT NULL,
+    `isUser` INT NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `userId_idx` (`userId` ASC) VISIBLE,
-    CONSTRAINT `iduser`
-        FOREIGN KEY (`userId`)
-            REFERENCES `photogallery`.`user` (`id`)
+    INDEX `idUser_idx` (`isUser` ASC) VISIBLE,
+    CONSTRAINT `idUser`
+        FOREIGN KEY (`isUser`)
+            REFERENCES user (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
 CREATE TABLE IF NOT EXISTS image
 (
-    `id`      INT          NOT NULL AUTO_INCREMENT,
-    `title`   VARCHAR(64)  NOT NULL,
-    `tags`    VARCHAR(500) NULL,
-    `albumId` INT          NOT NULL,
-    `file`    VARCHAR(45)  NOT NULL,
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(45) NOT NULL,
+    `tags` VARCHAR(500) NULL,
+    `file` VARCHAR(500) NOT NULL,
+    `albumId` INT NULL,
     PRIMARY KEY (`id`),
     INDEX `albumId_idx` (`albumId` ASC) VISIBLE,
     CONSTRAINT `albumId`
@@ -59,24 +60,6 @@ CREATE TABLE IF NOT EXISTS image
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
-CREATE TABLE IF NOT EXISTS commentimage
-(
-    `id`        INT NOT NULL AUTO_INCREMENT,
-    `imageId`   INT NOT NULL,
-    `commentId` INT NOT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `commentId_idx` (`commentId` ASC) VISIBLE,
-    INDEX `imageId_idx` (`imageId` ASC) VISIBLE,
-    CONSTRAINT `commentId`
-        FOREIGN KEY (`commentId`)
-            REFERENCES comment (`id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION,
-    CONSTRAINT `imageId`
-        FOREIGN KEY (`imageId`)
-            REFERENCES image (`id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
-);
+
 
 
