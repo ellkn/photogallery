@@ -44,7 +44,7 @@ public class UserServiceDomain implements UserService {
         user.setDate(date);
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(password));
-        user.setEnabled(false);
+        user.setEnabled(true);
         user.setRoles("USER");
 
         userRepository.save(user);
@@ -56,15 +56,12 @@ public class UserServiceDomain implements UserService {
         return true;
     }
     @Override
-    public boolean activateUser(String code) {
-        User user = userRepository.findByEnabled(code);
-
-        if (user == null) {
-            return false;
-        }
-
-        user.setEnabled(true);
-        userRepository.save(user);
-        return true;
+    public boolean activateUser(Long id) {
+        User user = userRepository.findById(id).get();
+        if (user != null) {
+            user.setEnabled(true);
+            userRepository.save(user);
+            return true;
+        } else return false;
     }
 }

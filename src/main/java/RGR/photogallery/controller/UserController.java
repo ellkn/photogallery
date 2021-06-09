@@ -60,23 +60,10 @@ public class UserController {
         return model;
     }
 
+    @PostMapping("/success_login")
+    public ModelAndView successLogin(ModelAndView model) {
+        model.setViewName("redirect:/");
 
-//    @GetMapping("/mail/mail")
-//    public String mail() {
-//        return "mail";
-//    }
-
-//    @GetMapping("/activate/{code}")
-//    public String activate(Model model, @PathVariable String code) {
-//        boolean isActivated = userService.activateUser(code);
-//
-//        if (isActivated) {
-//            model.addAttribute("message", "User successfully activated");
-//        } else {
-//            model.addAttribute("message", "Activation code is not found!");
-//        }
-//
-//        return "login";
-//    }
-
+        return model;
+    }
 }

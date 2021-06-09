@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
     List<User> getList();
-    boolean activateUser(String code);
+    boolean activateUser(Long id);
     boolean isUserWithEmailExist(String email);
     boolean addUser(String username, String firstName, String lastName, String email, String date, String password);
 //    boolean activateUser(String code);

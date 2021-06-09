@@ -15,15 +15,15 @@ public class ActivationController {
     private UserServiceDomain userServiceDomain;
 
     @GetMapping("/activate/{code}")
-    public String activateUser(@PathVariable String code) {
+    public String activateUser(@PathVariable Long code) {
         if (userServiceDomain.activateUser(code)) {
-            return "redirect:/";
+            return "redirect:/login";
         } else
             return "redirect:/activate_error";
     }
 
     @GetMapping("/activate_error")
     public String errorActive() {
-        return "login";
+        return "/user/registration";
     }
 }
