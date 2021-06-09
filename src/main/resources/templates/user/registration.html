@@ -10,7 +10,9 @@
 <body>
 <body>
 <th:block layout:fragment="container">
-    <div class="form-container sign-in-container">
+
+    <div class="overlay-panel overlay-right">
+
         <form th:action="@{/user/registration}" method="post" th:object="${userForm}">
             <h2 th:text="${'User Registration'}">Create Account</h2>
 
@@ -27,16 +29,11 @@
             <button>Sign Up</button>
         </form>
     </div>
-    <div class="overlay-container">
-        <div class="overlay">
-            <div class="overlay-panel overlay-right">
+    <div class="overlay-panel_1">
                 <h1>Welcome Back!</h1>
                 <p>To keep connected with us please login with your personal info</p>
 <!--                <button class="ghost" id="signIn">Sign In</button>-->
                 <a th:href="@{user/login}">Login</a>
-            </div>
-
-        </div>
     </div>
 </th:block>
 </body>

@@ -4,6 +4,7 @@ import RGR.photogallery.domain.User;
 import RGR.photogallery.mail.MailSender;
 import RGR.photogallery.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -64,4 +65,16 @@ public class UserServiceDomain implements UserService {
             return true;
         } else return false;
     }
+
+//    @Override
+//    public UserService loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = userRepository.findByUsername(username);
+//
+//        if (user == null) {
+//            throw new UsernameNotFoundException("User not found");
+//        }
+//
+//        return user;
+//    }
+
 }
