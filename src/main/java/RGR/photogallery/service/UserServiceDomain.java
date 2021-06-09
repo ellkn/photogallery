@@ -44,21 +44,21 @@ public class UserServiceDomain implements UserService {
         user.setDate(date);
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         user.setPassword(bCryptPasswordEncoder.encode(password));
-        user.setEnabled(false);
+        user.setEnabled(true);
         user.setRoles("USER");
 
         userRepository.save(user);
 
         String message = String.format("Пожалуйста, для активации аккаунта перейдите по ссылке: http://localhost:8080/activate/%s",
-                user.getUsername());
+                user.getId());
         mailSender.send(user.getEmail(), "Activation Code", message);
 
         return true;
     }
     @Override
-    public boolean activateUser(String username) {
-        if (userRepository.findByUsername(username) != null) {
-            User user = userRepository.findByUsername(username);
+    public boolean activateUser(Long id) {
+        User user = userRepository.findById(id).get();
+        if (user != null) {
             user.setEnabled(true);
             userRepository.save(user);
             return true;
