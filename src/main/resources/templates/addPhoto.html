@@ -15,9 +15,21 @@
         <h3 th:text="${album.title.{id}}" >title</h3>
     </div>
     <div class="overlay-panel overlay-right">
-        фото из альбома конкретного пользователя
+        форма для добавления фото
         <form id="form_add_photo_at_album" th:action="@{/addPhoto}" method="post" th:object="${image}">
-            <button id="add_album" type="submit">Add photo at album</button>
+            <!--            <input type="text" th:field="*{title}" placeholder="Выберите фото"/>-->
+            <button id="add_photo" type="submit">Add photo</button>
+        </form>
+        <form action="" th:action="@{/addPhoto}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:value="${imageId}" name="imageId">
+            <table>
+                <tr>
+                    <td><input type="file" name="files" /></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" class="stdBtn" th:value="#{form.label.upload.submit}" /></td>
+                </tr>
+            </table>
         </form>
     </div>
 </th:block>

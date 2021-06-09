@@ -42,7 +42,7 @@ public class ProfileImageService {
         return null;
     }
 
-    public boolean saveCarImage(MultipartFile multipartFile, Long userId) {
+    public boolean saveProfileImage(MultipartFile multipartFile, Long userId) {
         boolean result = true;
         String filePath = profileImgDirPath + File.separator + userId + File.separator;
 

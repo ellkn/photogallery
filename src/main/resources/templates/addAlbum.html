@@ -21,6 +21,7 @@
 
   </div>
   <div class="overlay-panel overlay-right">
+    <h2>Add album</h2>
     <form id="form_add_album" th:action="@{/addAlbum}" method="post" th:object="${album}">
       <input type="text" th:field="*{title}" placeholder="Название"/>
       <button id="add_album" type="submit">Добавить альбом</button>

@@ -29,6 +29,8 @@ public class AlbumController {
     @Autowired
     private AlbumRepository albumRepository;
 
+    @Autowired
+    private AlbumRepository albumRepository;
 
     @GetMapping("/add_album_page")
     public ModelAndView addAlbumPage(ModelAndView model) {
@@ -47,8 +49,7 @@ public class AlbumController {
         if (albumService.addAlbum(user.get().getId(), album.getTitle())) {
             model.setViewName("/user/profile");
             return model;
-        } else
-            model.setViewName("addAlbum");
+        } else model.setViewName("addAlbum");
         return model;
     }
 
@@ -58,4 +59,13 @@ public class AlbumController {
         model.addAttribute("album", album);
         return "album";
     }
+    @GetMapping("/album/{id}")
+    public String loadAlbum(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Optional<User> user = userRepository.findByEmail(auth.getName());
+        model.addAttribute("album", new Album());
+        return "album";
+    }
+
+
 }

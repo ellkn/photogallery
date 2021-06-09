@@ -32,11 +32,11 @@ CREATE TABLE IF NOT EXISTS comment
 (
     `id` INT NOT NULL AUTO_INCREMENT,
     `text` VARCHAR(500) NOT NULL,
-    `isUser` INT NOT NULL,
+    `id_user` INT NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `idUser_idx` (`isUser` ASC) VISIBLE,
-    CONSTRAINT `idUser`
-        FOREIGN KEY (`isUser`)
+    INDEX `id_user_idx` (`id_user` ASC) VISIBLE,
+    CONSTRAINT `id_user`
+        FOREIGN KEY (`id_user`)
             REFERENCES user (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
@@ -47,11 +47,11 @@ CREATE TABLE IF NOT EXISTS image
     `title` VARCHAR(45) NOT NULL,
     `tags` VARCHAR(500) NULL,
     `file` VARCHAR(500) NOT NULL,
-    `albumId` INT NULL,
+    `album_id` INT NULL,
     PRIMARY KEY (`id`),
-    INDEX `albumId_idx` (`albumId` ASC) VISIBLE,
-    CONSTRAINT `albumId`
-        FOREIGN KEY (`albumId`)
+    INDEX `album_id_idx` (`album_id` ASC) VISIBLE,
+    CONSTRAINT `album_id`
+        FOREIGN KEY (`album_id`)
             REFERENCES album (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION

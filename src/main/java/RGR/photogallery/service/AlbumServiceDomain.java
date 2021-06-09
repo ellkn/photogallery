@@ -31,4 +31,5 @@ public class AlbumServiceDomain implements AlbumService{
     public List<Album> allAlbumByUser(Long userId) {
         return albumRepository.findAllByUserId(userId);
     }
+
 }

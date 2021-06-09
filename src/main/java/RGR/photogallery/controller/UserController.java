@@ -86,9 +86,9 @@ public class UserController {
         model.addAttribute("user", user.get());
         if (albumService.allAlbumByUser(user.get().getId()) != null) {
             model.addAttribute("albums", albumService.allAlbumByUser(user.get().getId()));
-            return "user/profile";
+            return "/user/profile";
         } else
-            return "user/profile";
+            return "/user/profile";
     }
 
     @GetMapping("/change_avatar_page")
