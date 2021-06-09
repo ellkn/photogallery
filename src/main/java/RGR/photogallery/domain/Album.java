@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "album")
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
