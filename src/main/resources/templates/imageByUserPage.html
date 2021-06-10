@@ -27,7 +27,7 @@
     <h3>Комментарии:</h3>
     <th:block th:each="comment: ${comments}">
       <tr>
-        <td ><p class="comment" th:text="${comment.username} + ': ' +  ${comment.text}" th:href="@{/album/{id}(id = ${album.id})}">text</p></td>
+        <td><a class="comment" title="Delete" th:href="@{'/deleteComment/' + ${comment.id}}" th:text="${comment.username} + ': ' +  ${comment.text}">text</a></td>
       </tr>
     </th:block>
 

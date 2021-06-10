@@ -5,6 +5,7 @@ import RGR.photogallery.domain.Comment;
 import RGR.photogallery.domain.Image;
 import RGR.photogallery.domain.User;
 import RGR.photogallery.repository.AlbumRepository;
+import RGR.photogallery.repository.CommentRepository;
 import RGR.photogallery.repository.ImageRepository;
 import RGR.photogallery.repository.UserRepository;
 import RGR.photogallery.service.AlbumService;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +45,9 @@ public class CommentController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     @PostMapping("/addComment/{imageID}")
     public ModelAndView addComment(ModelAndView model, @PathVariable(name = "imageID") Long imageId, @RequestParam(name = "comment") String comment) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -59,6 +64,23 @@ public class CommentController {
         } else
         model.setViewName("redirect:/image_at_album/" + imageId);
         return model;
+    }
+
+    @GetMapping("/deleteComment/{id}")
+    public ModelAndView deleteComment(ModelAndView model, @PathVariable(name = "id") Long commentId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByEmail(auth.getName()).get();
+        Image image = imageRepository.findById(commentRepository.findById(commentId).get().getImageId()).get();
+        Album album = albumRepository.findById(image.getAlbumId()).get();
+        commentService.deleteComment(commentId, auth.getName());
+        if (user.getId() != album.getUserId()) {
+            model.setViewName("redirect:/image_at_user_album/" + image.getId());
+            return model;
+        } else
+            model.setViewName("redirect:/image_at_album/" + image.getId());
+        return model;
+
+
     }
 
 

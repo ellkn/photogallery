@@ -118,7 +118,14 @@ public class UserController {
         model.setViewName("redirect:/user/profile");
         return model;
     }
-
+    @GetMapping("/searchUser")
+    public ModelAndView searchAlbum(ModelAndView model, @RequestParam("user") String user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<User> users = userRepository.findByUsernameIsContaining(user);
+        model.addObject("users", users);
+        model.setViewName("/user/list");
+        return model;
+    }
 
     @GetMapping("/user/{id}")
     public ModelAndView userPage(ModelAndView model, @PathVariable(name = "id") Long id) {

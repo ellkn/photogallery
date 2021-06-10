@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<body>
+<th:block layout:fragment="container">
+
+  <h1>User List - search</h1>
+  <h2>Поиск:</h2><br>
+
+  <form id="form_add_album" th:action="@{/searchUser}" method="get">
+    <input type="text"  name = "user" placeholder="input information"/>
+    <button id="add_album" type="submit">Search</button>
+  </form>
+
+  <table class="datatable">
+    <tr class="column-header">
+      <td>ID</td>
+      <td>Email</td>
+      <td>username</td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Day of Birth</td>
+    </tr>
+
+    <th:block th:each="user: ${users}">
+      <tr>
+        <td> <a th:text="${user.id}" th:href="@{/user/{id}(id = ${user.id})}">id</a></td>
+        <td> <a th:text="${user.email}" th:href="@{/user/{id}(id = ${user.id})}">email</a> </td>
+        <td> <a th:text="${user.username}" th:href="@{/user/{id}(id = ${user.id})}">username</a></td>
+        <td> <a th:text="${user.firstname}" th:href="@{/user/{id}(id = ${user.id})}">firstname</a> </td>
+        <td> <a th:text="${user.lastname}" th:href="@{/user/{id}(id = ${user.id})}">lastname</a> </td>
+        <td> <a th:text="${user.date}" th:href="@{/user/{id}(id = ${user.id})}">dateofbirth</a> </td>
+      </tr>
+    </th:block>
+
+
+  </table>
+
+</th:block>
+</body>
+
+</html>
