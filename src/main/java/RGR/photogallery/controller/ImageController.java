@@ -83,4 +83,18 @@ public class ImageController {
         return model;
     }
 
+    @GetMapping("/image_at_user_album/{imageId}")
+    public ModelAndView imageUserPage(ModelAndView model, @PathVariable(name = "imageId") Long imageId) {
+        Image image = imageRepository.findById(imageId).get();
+        Album album = albumRepository.findById(image.getAlbumId()).get();
+        User user = userRepository.findById(album.getUserId()).get();
+        model.addObject("image", image);
+        model.addObject("album", album);
+        model.addObject("user", user);
+
+        model.setViewName("imageByUserPage");
+        return model;
+    }
+
+
 }

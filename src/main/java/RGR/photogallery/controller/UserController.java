@@ -127,5 +127,15 @@ public class UserController {
         return model;
     }
 
+    @GetMapping("/user/{id}")
+    public ModelAndView userPage(ModelAndView model, @PathVariable(name = "id") Long id) {
+        User user = userRepository.findById(id).get();
+        List<Album> album =albumService.allAlbumByUser(id);
+        model.addObject("user", user);
+        model.addObject("albums", album);
+        model.setViewName("/user/userPage");
+        return model;
+    }
+
 
 }
