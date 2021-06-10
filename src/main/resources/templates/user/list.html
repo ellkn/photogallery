@@ -6,9 +6,8 @@
 <body>
 <th:block layout:fragment="container">
 
-    <h1>User List - search</h1>
-    <h2>Поиск:</h2><br>
-
+    <h1>User List</h1>
+    <h2>Поиск:</h2>
     <form id="form_add_album" th:action="@{/searchUser}" method="get">
         <input type="text"  name = "user" placeholder="input information"/>
         <button id="add_album" type="submit">Search</button>
@@ -34,7 +33,7 @@
                 <td> <a th:text="${user.date}" th:href="@{/user/{id}(id = ${user.id})}">dateofbirth</a> </td>
             </tr>
         </th:block>
-
+я хотела, чтобы тут переводилось на страницу юзерлист, найденное выводит в консоль. доработать
 
     </table>
 

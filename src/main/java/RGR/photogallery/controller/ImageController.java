@@ -12,7 +12,6 @@ import RGR.photogallery.service.AlbumService;
 import RGR.photogallery.service.CommentService;
 import RGR.photogallery.service.ImageService;
 import RGR.photogallery.service.ImageServiceDomain;
-import RGR.photogallery.util.ProfileImageService;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
