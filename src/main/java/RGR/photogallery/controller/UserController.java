@@ -1,5 +1,7 @@
 package RGR.photogallery.controller;
 
+import RGR.photogallery.domain.Album;
+import RGR.photogallery.domain.Image;
 import RGR.photogallery.domain.User;
 import RGR.photogallery.form.UserRegistrationForm;
 import RGR.photogallery.form.UserRegistrationFormValidator;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -45,6 +48,13 @@ public class UserController {
         model.addAttribute("users", userService.getList());
 
         return "/user/list";
+    }
+    @GetMapping("/admin/adminuserlist")
+    public String indexadmin(Model model) {
+
+        model.addAttribute("users", userService.getList());
+
+        return "/admin/adminuserlist";
     }
 
     @GetMapping("/user/registration")
@@ -90,6 +100,14 @@ public class UserController {
         } else
             return "/user/profile";
     }
+//    @GetMapping("/user/{id}")
+//    public ModelAndView userprofile(ModelAndView model, @PathVariable(name = "id") User userid) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        Optional<User> user = userRepository.findById(userid.getId());
+//        model.addObject("user", user);
+//        model.setViewName("user/profile/{id}");
+//        return model;
+//    }
 
     @GetMapping("/change_avatar_page")
     public String changeAvaPage(Model model) {

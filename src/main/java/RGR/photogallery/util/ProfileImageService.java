@@ -30,7 +30,7 @@ public class ProfileImageService {
             return new FileSystemResource(f);
         } else {
             try {
-                f = new ClassPathResource("/static/img/profile" + postfix).getFile();
+                f = new ClassPathResource("/static/images/profile" + postfix).getFile();
                 if (f.exists() && !f.isDirectory()) {
                     return new FileSystemResource(f);
                 }

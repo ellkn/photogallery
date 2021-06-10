@@ -13,9 +13,8 @@
             <td>ID</td>
             <td>Email</td>
             <td>username</td>
-            <td>First Name</td>
-            <td>Last Name</td>
-            <td>Day of Birth</td>
+            <td>Enabled</td>
+            <td>Roles</td>
         </tr>
 
         <th:block th:each="user: ${users}">
@@ -23,9 +22,8 @@
                 <td> <a th:text="${user.id}" th:href="@{/user/{id}(id = ${user.id})}">id</a></td>
                 <td> <a th:text="${user.email}" th:href="@{/user/{id}(id = ${user.id})}">email</a> </td>
                 <td> <a th:text="${user.username}" th:href="@{/user/{id}(id = ${user.id})}">username</a></td>
-                <td> <a th:text="${user.firstname}" th:href="@{/user/{id}(id = ${user.id})}">firstname</a> </td>
-                <td> <a th:text="${user.lastname}" th:href="@{/user/{id}(id = ${user.id})}">lastname</a> </td>
-                <td> <a th:text="${user.date}" th:href="@{/user/{id}(id = ${user.id})}">dateofbirth</a> </td>
+                <td> <a th:text="${user.enabled}" th:href="@{/user/{id}(id = ${user.id})}">enabed</a> </td>
+                <td> <a th:text="${user.roles}" th:href="@{/user/{id}(id = ${user.id})}">roles</a> </td>
             </tr>
         </th:block>
 
