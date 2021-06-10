@@ -127,5 +127,16 @@ public class UserController {
         return model;
     }
 
+    @GetMapping("/searchUser")
+    public ModelAndView searchAlbum(ModelAndView model, @RequestParam("user") String user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Optional<User> user1 = userRepository.findByEmail(auth.getName());
+        model.addObject("user", user1.get());
+        userRepository.findAllByFirstnameAndLastnameAndEmailAndUsername(user);
+System.out.println(user);
+        model.setViewName("user/list");
+        return model;
+    }
+
 
 }

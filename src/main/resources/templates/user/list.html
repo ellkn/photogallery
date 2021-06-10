@@ -6,7 +6,13 @@
 <body>
 <th:block layout:fragment="container">
 
-    <h1>User List</h1>
+    <h1>User List - search</h1>
+    <h2>Поиск:</h2><br>
+
+    <form id="form_add_album" th:action="@{/searchUser}" method="get">
+        <input type="text"  name = "user" placeholder="input information"/>
+        <button id="add_album" type="submit">Search</button>
+    </form>
 
     <table class="datatable">
         <tr class="column-header">

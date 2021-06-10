@@ -14,5 +14,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
     User findByEnabled(String code);
     Optional<User> findById(Long id);
     User findByUsername(String username);
-//    Optional<User> findByActivationCode(String code);
-}
+    Optional<User> findAllByFirstnameAndLastnameAndEmailAndUsername(String user);
+    }
