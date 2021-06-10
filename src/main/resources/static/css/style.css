@@ -246,6 +246,11 @@ text-input{
     width: auto;
 }
 
+.changeUser:hover{
+    opacity: .5;
+    transition: .6s;
+}
+
 .overlay-right {
     right: 0;
     transform: translateX(0);

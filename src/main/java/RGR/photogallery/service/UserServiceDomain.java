@@ -78,4 +78,31 @@ public class UserServiceDomain implements UserService {
         } else return false;
     }
 
+    @Override
+    public boolean deleteUser(Long userId, String emailAdmin) {
+        User admin = userRepository.findByEmail(emailAdmin).get();
+        if (admin.getRoles().contains("ADMIN")) {
+            userRepository.delete(userRepository.findById(userId).get());
+            return true;
+        } else return false;
+    }
+
+    @Override
+    public boolean changeRole(Long userId, String emailAdmin) {
+        User admin = userRepository.findByEmail(emailAdmin).get();
+        User user = userRepository.findById(userId).get();
+        if (admin.getRoles().contains("ADMIN")) {
+
+            if (user.getRoles().equals("USER")) {
+                user.setRoles("MANAGER");
+                userRepository.save(user);
+                return true;
+            } else
+                if (user.getRoles().equals("MANAGER")) {
+                    user.setRoles("USER");
+                    userRepository.save(user);
+                    return true;
+                } else return false;
+        } else return false;
+    }
 }

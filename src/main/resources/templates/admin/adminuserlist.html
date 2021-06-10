@@ -15,15 +15,19 @@
             <td>username</td>
             <td>Enabled</td>
             <td>Roles</td>
+            <td>Delete</td>
+            <td>Role</td>
         </tr>
 
         <th:block th:each="user: ${users}">
             <tr>
-                <td> <a th:text="${user.id}" th:href="@{/user/{id}(id = ${user.id})}">id</a></td>
-                <td> <a th:text="${user.email}" th:href="@{/user/{id}(id = ${user.id})}">email</a> </td>
-                <td> <a th:text="${user.username}" th:href="@{/user/{id}(id = ${user.id})}">username</a></td>
-                <td> <a th:text="${user.enabled}" th:href="@{/user/{id}(id = ${user.id})}">enabed</a> </td>
-                <td> <a th:text="${user.roles}" th:href="@{/user/{id}(id = ${user.id})}">roles</a> </td>
+                <td> <a th:text="${user.id}" th:href="@{/deleteUser/{id}(id = ${user.id})}">id</a></td>
+                <td> <a th:text="${user.email}" th:href="@{/deleteUser/{id}(id = ${user.id})}">email</a> </td>
+                <td> <a th:text="${user.username}" th:href="@{/deleteUser/{id}(id = ${user.id})}">username</a></td>
+                <td> <a th:text="${user.enabled}" th:href="@{/deleteUser/{id}(id = ${user.id})}">enabed</a> </td>
+                <td> <a th:text="${user.roles}" th:href="@{/deleteUser/{id}(id = ${user.id})}">roles</a> </td>
+                <td> <a class="changeUser" th:href="@{/deleteUser/{id}(id = ${user.id})}">Удалить</a></td>
+                <td> <a class="changeUser" th:href="@{/changeRole/{id}(id = ${user.id})}">Изменить роль</a></td>
             </tr>
         </th:block>
 

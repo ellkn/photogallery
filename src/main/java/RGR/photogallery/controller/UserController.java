@@ -136,4 +136,12 @@ public class UserController {
         model.setViewName("/user/userPage");
         return model;
     }
+
+    @GetMapping("/deleteUser/{id}")
+    public ModelAndView deleteUser(ModelAndView model, @PathVariable(name = "id") Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        userService.deleteUser(id, auth.getName());
+        model.setViewName("redirect:/admin/adminuserlist");
+        return model;
+    }
 }
