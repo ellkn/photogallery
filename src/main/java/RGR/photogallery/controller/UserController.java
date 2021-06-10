@@ -100,14 +100,6 @@ public class UserController {
         } else
             return "/user/profile";
     }
-//    @GetMapping("/user/{id}")
-//    public ModelAndView userprofile(ModelAndView model, @PathVariable(name = "id") User userid) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        Optional<User> user = userRepository.findById(userid.getId());
-//        model.addObject("user", user);
-//        model.setViewName("user/profile/{id}");
-//        return model;
-//    }
 
     @GetMapping("/change_avatar_page")
     public String changeAvaPage(Model model) {
@@ -126,17 +118,24 @@ public class UserController {
         model.setViewName("redirect:/user/profile");
         return model;
     }
-
     @GetMapping("/searchUser")
     public ModelAndView searchAlbum(ModelAndView model, @RequestParam("user") String user) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Optional<User> user1 = userRepository.findByEmail(auth.getName());
         model.addObject("user", user1.get());
         userRepository.findAllByFirstnameAndLastnameAndEmailAndUsername(user);
-System.out.println(user);
+        System.out.println(user);
         model.setViewName("user/list");
         return model;
     }
 
-
+    @GetMapping("/user/{id}")
+    public ModelAndView userPage(ModelAndView model, @PathVariable(name = "id") Long id) {
+        User user = userRepository.findById(id).get();
+        List<Album> album =albumService.allAlbumByUser(id);
+        model.addObject("user", user);
+        model.addObject("albums", album);
+        model.setViewName("/user/userPage");
+        return model;
+    }
 }

@@ -22,4 +22,11 @@ public class ImageServiceDomain implements ImageService{
         imageRepository.save(image);
         return true;
     }
+
+    @Override
+    public boolean deletePhoto(Long id) {
+        Image image = imageRepository.findById(id).get();
+        imageRepository.delete(image);
+        return true;
+    }
 }

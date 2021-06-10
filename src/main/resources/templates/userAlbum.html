@@ -16,15 +16,13 @@
     </div>
     <div class="overlay-panel overlay-right">
 
-        <th:block>
+        <th:block th:each="image: ${imageList}">
             <tr>
-                <img class="image_in_album" th:src="@{/Images/Photo/{photo}(photo = ${image.file})}">
+                <a th:href="@{/image_at_user_album/{imageId} (imageId = ${image.id})}"><img class="image_in_album" th:src="@{/Images/Photo/{photo}(photo = ${image.file})}"></a>
                 <td class="title_image" th:text="${image.title}">title</td><br>
                 <td th:text="${image.tags}">tags</td>
             </tr>
         </th:block>
-
-        <button id="add_album" type="submit"><a th:href="@{/deletePhoto/{id}(id = ${image.id})}">Удалить фото из альбома</a></button>
     </div>
 </th:block>
 </body>

@@ -92,4 +92,17 @@ public class AlbumController {
         return model;
     }
 
+    @GetMapping("/userAlbum/{id}")
+    public ModelAndView userAlbumPage(ModelAndView model, @PathVariable(name = "id") Long id) {
+        List<Image> imageList = imageRepository.findAllByAlbumId(id);
+        Album album = albumRepository.findById(id).get();
+        User user = userRepository.findById(album.getUserId()).get();
+        model.addObject("imageList", imageList);
+        model.addObject("album", album);
+        model.addObject("user", user);
+        model.setViewName("userAlbum");
+
+        return model;
+    }
+
 }

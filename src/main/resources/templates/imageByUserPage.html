@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Album</title>
+</head>
+<body>
+<th:block layout:fragment="container">
+  <div class="overlay-panel_1">
+    <h2>Photoalbum</h2>
+    <h3 th:text="${album.title}">title</h3><br>
+    <p th:text = "'by ' + ${user.username}">username</p>
+  </div>
+  <div class="overlay-panel overlay-right">
+
+    <th:block>
+      <tr>
+        <img class="image_in_album" th:src="@{/Images/Photo/{photo}(photo = ${image.file})}">
+        <td class="title_image" th:text="${image.title}">title</td><br>
+        <td th:text="${image.tags}">tags</td>
+      </tr>
+    </th:block>
+  </div>
+</th:block>
+</body>
+</html>
