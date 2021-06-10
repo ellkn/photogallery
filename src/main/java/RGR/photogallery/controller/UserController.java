@@ -118,22 +118,6 @@ public class UserController {
         model.setViewName("redirect:/user/profile");
         return model;
     }
-    @GetMapping("/searchUser")
-    public ModelAndView searchUser(ModelAndView model, @RequestParam("user") String user) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //Optional<User> user1 = userRepository.findByEmail(auth.getName());
-        Optional<User> user1=userRepository.findAllByUsernameIsContaining(user);
-        Optional<User> user2=userRepository.findAllByFirstnameIsContaining(user);
-        Optional<User> user3=userRepository.findAllByLastnameIsContaining(user);
-        Optional<User> user4=userRepository.findAllByEmailIsContaining(user);
-        model.addObject("users", user);
-        System.out.println(user1);
-        System.out.println(user2);
-        System.out.println(user3);
-        System.out.println(user4);
-        model.setViewName("user/list");
-        return model;
-    }
 
 
     @GetMapping("/user/{id}")
