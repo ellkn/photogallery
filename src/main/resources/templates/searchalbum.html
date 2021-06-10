@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
 </head>
 <body>
+<th:block layout:fragment="container">
+    <div class="overlay-panel_1">
+        <h2>Photoalbum</h2>
+        <th:block>
+            <td>
+                <a th:href="@{/change_avatar_page}"><img id="avatar_image" th:src="@{/Images/Avatars/{avatar}(avatar = ${user.getImage()})}"></a>
+                <tr th:text="${user.username}">username</tr><br>
+                <tr th:text="${user.email}">email</tr><br>
+                <tr th:text="${user.firstname}">firstname </tr>
+                <tr th:text="${user.lastname}">lastname</tr>
 
+            </td>
+        </th:block>
+
+    </div>
+    <div class="overlay-panel overlay-right">
+        <h2>Поиск:</h2><br>
+
+        <form id="form_add_album" th:action="@{/searchAlbumByTitile}" method="get" th:object="${album}">
+            <input type="text" th:field="*{title}" placeholder="Название"/>
+            <button id="add_album" type="submit">Добавить альбом</button>
+        </form>
+    </div>
+</th:block>
 </body>
 </html>

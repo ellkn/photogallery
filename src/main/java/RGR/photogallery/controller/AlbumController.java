@@ -62,13 +62,34 @@ public class AlbumController {
     public ModelAndView albumPage(ModelAndView model, @PathVariable(name = "id") Long albumId) {
         List<Image> imageList = imageRepository.findAllByAlbumId(albumId);
         Album album = albumRepository.findById(albumId).get();
+        User user = userRepository.findById(album.getUserId()).get();
         model.addObject("imageList", imageList);
         model.addObject("album", album);
+        model.addObject("user", user);
         model.setViewName("album");
         return model;
     }
 
+    @GetMapping("/album")
+    public ModelAndView searchAlbumPage(ModelAndView model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Optional<User> user = userRepository.findByEmail(auth.getName());
+        model.addObject("user", user.get());
+        model.addObject("album", new Album());
+        model.setViewName("searchalbum");
+        return model;
+    }
 
-
+    @GetMapping("/searchAlbumByTitile")
+    public ModelAndView searchAlbum(ModelAndView model, @ModelAttribute("album") Album album) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Optional<User> user = userRepository.findByEmail(auth.getName());
+        model.addObject("user", user.get());
+        model.addObject("album", new Album());
+        List<Album> albums = albumRepository.findAllByTitleIsContaining(album.getTitle());
+        model.addObject("albums", albums);
+        model.setViewName("albumList");
+        return model;
+    }
 
 }

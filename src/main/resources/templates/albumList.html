@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+</head>
+<body>
+<th:block layout:fragment="container">
+  <div class="overlay-panel_1">
+    <h2>Photoalbum</h2>
+    <th:block>
+      <td>
+        <a th:href="@{/change_avatar_page}"><img id="avatar_image" th:src="@{/Images/Avatars/{avatar}(avatar = ${user.getImage()})}"></a>
+        <tr th:text="${user.username}">username</tr><br>
+        <tr th:text="${user.email}">email</tr><br>
+        <tr th:text="${user.firstname}">firstname </tr>
+        <tr th:text="${user.lastname}">lastname</tr>
+
+      </td>
+    </th:block>
+
+  </div>
+  <div class="overlay-panel overlay-right">
+    <h2>Альбомы:</h2><br>
+    <th:block th:each="album: ${albums}">
+      <tr>
+        <td><a id="album_href" th:text="${album.title}" th:href="@{/album/{id}(id = ${album.id})}">title</a></td>
+      </tr>
+    </th:block>
+  </div>
+</th:block>
+</body>
+</html>

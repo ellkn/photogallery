@@ -11,7 +11,8 @@
 <th:block layout:fragment="container">
     <div class="overlay-panel_1">
         <h2>Photoalbum</h2>
-        <h3 th:text="${album.title}" >title</h3>
+        <h3 th:text="${album.title}">title</h3><br>
+        <p th:text = "'by ' + ${user.username}">username</p>
     </div>
     <div class="overlay-panel overlay-right">
 

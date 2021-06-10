@@ -9,6 +9,7 @@ import RGR.photogallery.service.CommentService;
 import RGR.photogallery.service.ImageService;
 import RGR.photogallery.service.ImageServiceDomain;
 import RGR.photogallery.util.ProfileImageService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,14 @@ public class ImageController {
         Album album = albumRepository.findById(albumId).get();
         model.addObject("album", album);
         model.setViewName("addPhoto");
+        return model;
+    }
+
+    @GetMapping("/image_at_album/{imageId}")
+    public ModelAndView imagePage(ModelAndView model, @PathVariable(name = "imageId") Long imageId) {
+        Image image = imageRepository.findById(imageId).get();
+        model.addObject("image", image);
+        model.setViewName("/");
         return model;
     }
 
