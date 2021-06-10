@@ -88,6 +88,10 @@ public class AlbumController {
         model.addObject("album", new Album());
         List<Album> albums = albumRepository.findAllByTitleIsContaining(album.getTitle());
         model.addObject("albums", albums);
+        if (albums.isEmpty()) {
+            model.setViewName("redirect:/album");
+            return model;
+        } else
         model.setViewName("albumList");
         return model;
     }

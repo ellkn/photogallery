@@ -8,17 +8,19 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
+    private String username;
+    private Long imageId;
     @NotBlank
     private String text;
 
     public Comment() {
     }
 
-    public Comment(Long id, @NotBlank String text, Long userId) {
+    public Comment(Long id, @NotBlank String text, String username, Long imageId) {
         this.id = id;
-        this.userId = userId;
+        this.username = username;
         this.text = text;
+        this.imageId = imageId;
     }
 
     public Long getId() {
@@ -37,11 +39,19 @@ public class Comment {
         this.text = text;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Long getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
     }
 }

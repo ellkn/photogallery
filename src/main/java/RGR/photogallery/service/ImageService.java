@@ -6,6 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Optional;
 
 public interface ImageService {
-    boolean addPhotoAlbum(Long albumId, String title, String tags, String file);
-    boolean deletePhoto(Long id);
+    boolean addPhotoAlbum(Long albumId, String title, String tags, String file, Long userId);
+    boolean deletePhoto(Long id, Long userId);
 }

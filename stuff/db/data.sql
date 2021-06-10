@@ -30,16 +30,10 @@ CREATE TABLE IF NOT EXISTS album
 );
 CREATE TABLE IF NOT EXISTS comment
 (
-    `id` INT NOT NULL AUTO_INCREMENT,
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `text` VARCHAR(500) NOT NULL,
-    `id_user` INT NOT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `id_user_idx` (`id_user` ASC) VISIBLE,
-    CONSTRAINT `id_user`
-        FOREIGN KEY (`id_user`)
-            REFERENCES user (`id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
+    `username` varchar(64) NOT NULL,
+    `image_id` INT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS image
 (

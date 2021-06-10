@@ -238,9 +238,28 @@ text-input{
     transform: translateX(0);
 }
 
+.comment{
+    margin: 10px auto;
+    border-bottom: 1px black solid;
+    border-top: 1px black solid;
+}
+
 .overlay-right {
     right: 0;
     transform: translateX(0);
+}
+
+.add_album{
+    width: 90%;
+    height: 35px;
+    font-size: 12px;
+    padding: 5px;
+    color: black;
+}
+
+.add_album:hover{
+    opacity: .7;
+    transition: .5s;
 }
 
 .container.right-panel-active .overlay-right {

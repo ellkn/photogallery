@@ -24,7 +24,20 @@
             </tr>
         </th:block>
 
-        <button id="add_album" type="submit"><a th:href="@{/deletePhoto/{id}(id = ${image.id})}">Удалить фото из альбома</a></button>
+        <button class="add_album" type="submit"><a th:href="@{/deletePhoto/{id}(id = ${image.id})}">Удалить фото</a></button>
+
+        <h3>Комментарии:</h3>
+        <th:block th:each="comment: ${comments}">
+            <tr>
+                <td ><p class="comment" th:text="${comment.username} + ': ' +  ${comment.text}" th:href="@{/album/{id}(id = ${album.id})}">text</p></td>
+            </tr>
+        </th:block>
+
+
+        <form id="form_add_album" th:action="@{/addComment/{imageID} (imageID = ${image.id})}" method="post">
+            <input type="text" name="comment" placeholder="Введите комментарий"/>
+            <button class="add_album" type="submit">Добавить комментарий</button>
+        </form>
     </div>
 </th:block>
 </body>

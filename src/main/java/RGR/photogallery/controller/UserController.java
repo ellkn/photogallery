@@ -123,7 +123,6 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Optional<User> user1 = userRepository.findByEmail(auth.getName());
         model.addObject("user", user1.get());
-        userRepository.findAllByFirstnameAndLastnameAndEmailAndUsername(user);
         System.out.println(user);
         model.setViewName("user/list");
         return model;
