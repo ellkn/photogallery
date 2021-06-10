@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface ImageService {
     boolean addPhotoAlbum(Long albumId, String title, String tags, String file, Long userId);
-    boolean deletePhoto(Long id, Long userId);
+    boolean deletePhoto(Long id, String email);
 }

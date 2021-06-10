@@ -251,6 +251,13 @@ text-input{
     transition: .6s;
 }
 
+.delete_album{
+    background: #d9d9d9;
+}
+.delete_album:hover{
+    opacity: .5;
+    transition: .6s;
+}
 .overlay-right {
     right: 0;
     transform: translateX(0);

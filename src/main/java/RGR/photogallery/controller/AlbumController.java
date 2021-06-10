@@ -58,6 +58,14 @@ public class AlbumController {
         return model;
     }
 
+    @GetMapping("/deleteAlbum/{id}")
+    public ModelAndView deleteAlbum(ModelAndView model, @PathVariable(name = "id") Long albumId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        albumService.deleteAlbum(albumId, auth.getName());
+        model.setViewName("redirect:/user/profile");
+        return model;
+    }
+
     @GetMapping("/album/{id}")
     public ModelAndView albumPage(ModelAndView model, @PathVariable(name = "id") Long albumId) {
         List<Image> imageList = imageRepository.findAllByAlbumId(albumId);

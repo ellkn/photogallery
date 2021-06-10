@@ -129,7 +129,14 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public ModelAndView userPage(ModelAndView model, @PathVariable(name = "id") Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User host = userRepository.findByEmail(auth.getName()).get();
         User user = userRepository.findById(id).get();
+
+        if (host.getId() == id) {
+            model.setViewName("redirect:/user/profile");
+            return model;
+        }
         List<Album> album =albumService.allAlbumByUser(id);
         model.addObject("user", user);
         model.addObject("albums", album);
@@ -141,6 +148,14 @@ public class UserController {
     public ModelAndView deleteUser(ModelAndView model, @PathVariable(name = "id") Long id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         userService.deleteUser(id, auth.getName());
+        model.setViewName("redirect:/admin/adminuserlist");
+        return model;
+    }
+
+    @GetMapping("/changeRole/{id}")
+    public ModelAndView changeRoleUser(ModelAndView model, @PathVariable(name = "id") Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        userService.changeRole(id, auth.getName());
         model.setViewName("redirect:/admin/adminuserlist");
         return model;
     }

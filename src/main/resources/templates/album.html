@@ -13,6 +13,7 @@
         <h2>Photoalbum</h2>
         <h3 th:text="${album.title}">title</h3><br>
         <p th:text = "'by ' + ${user.username}">username</p>
+        <button class="delete_album" type="submit"><a th:href="@{/deleteAlbum/{id}(id = ${album.id})}">Удалить альбом</a></button>
     </div>
     <div class="overlay-panel overlay-right">
 

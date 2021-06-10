@@ -83,15 +83,6 @@ public class ImageController {
         return model;
     }
 
-    @GetMapping("/deletePhoto/{id}")
-    public ModelAndView deletePhoto(ModelAndView model, @PathVariable(name = "id") Long id) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Optional<User> user = userRepository.findByEmail(auth.getName());
-        imageService.deletePhoto(id, user.get().getId());
-        model.setViewName("redirect:/user/profile");
-        return model;
-    }
-
     @GetMapping("/image_at_user_album/{imageId}")
     public ModelAndView imageUserPage(ModelAndView model, @PathVariable(name = "imageId") Long imageId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -104,6 +95,14 @@ public class ImageController {
         model.addObject("image", image);
         model.addObject("album", album);
         model.setViewName("imageByUserPage");
+        return model;
+    }
+
+    @GetMapping("/deletePhoto/{id}")
+    public ModelAndView deletePhoto(ModelAndView model, @PathVariable(name = "id") Long imageId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        imageService.deletePhoto(imageId, auth.getName());
+        model.setViewName("redirect:/user/profile");
         return model;
     }
 

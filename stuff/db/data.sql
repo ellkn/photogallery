@@ -41,13 +41,7 @@ CREATE TABLE IF NOT EXISTS image
     `title` VARCHAR(45) NOT NULL,
     `tags` VARCHAR(500) NULL,
     `file` VARCHAR(500) NOT NULL,
-    `album_id` INT NULL,
-    INDEX `album_id_idx` (`album_id` ASC) VISIBLE,
-    CONSTRAINT `album_id`
-        FOREIGN KEY (`album_id`)
-            REFERENCES album (`id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
+    `album_id` INT NULL
 );
 
 

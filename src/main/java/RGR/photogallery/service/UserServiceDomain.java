@@ -81,9 +81,13 @@ public class UserServiceDomain implements UserService {
     @Override
     public boolean deleteUser(Long userId, String emailAdmin) {
         User admin = userRepository.findByEmail(emailAdmin).get();
+        User user = userRepository.findById(userId).get();
         if (admin.getRoles().contains("ADMIN")) {
-            userRepository.delete(userRepository.findById(userId).get());
-            return true;
+            if (!user.getRoles().contains("ADMIN")) {
+                userRepository.delete(userRepository.findById(userId).get());
+                return true;
+            } else return false;
+
         } else return false;
     }
 
