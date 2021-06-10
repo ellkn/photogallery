@@ -52,7 +52,7 @@ public class AlbumController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Optional<User> user = userRepository.findByEmail(auth.getName());
         if (albumService.addAlbum(user.get().getId(), album.getTitle())) {
-            model.setViewName("/user/profile");
+            model.setViewName("redirect:/user/profile");
             return model;
         } else model.setViewName("addAlbum");
         return model;
@@ -67,6 +67,8 @@ public class AlbumController {
         model.setViewName("album");
         return model;
     }
+
+
 
 
 }

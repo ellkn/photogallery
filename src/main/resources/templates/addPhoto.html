@@ -14,7 +14,6 @@
         <h3 th:text="${album.title}" >title</h3>
     </div>
     <div class="overlay-panel overlay-right">
-        фото из альбома конкретного пользователя
         <form id="form_add_photo_at_album" th:action="@{/addPhoto/{albumId} (albumId = ${album.id})}" method="post" enctype="multipart/form-data">
             <input type="file" name="file">
             <input type="text" name="title" placeholder="Название">
