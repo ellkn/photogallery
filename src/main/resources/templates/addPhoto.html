@@ -11,25 +11,15 @@
 <th:block layout:fragment="container">
     <div class="overlay-panel_1">
         <h2>Photoalbum</h2>
-        не смогла выписать название альбома, к которому обратились
-        <h3 th:text="${album.title.{id}}" >title</h3>
+        <h3 th:text="${album.title}" >title</h3>
     </div>
     <div class="overlay-panel overlay-right">
-        форма для добавления фото
-        <form id="form_add_photo_at_album" th:action="@{/addPhoto}" method="post" th:object="${image}">
-            <!--            <input type="text" th:field="*{title}" placeholder="Выберите фото"/>-->
-            <button id="add_photo" type="submit">Add photo</button>
-        </form>
-        <form action="" th:action="@{/addPhoto}" method="post" enctype="multipart/form-data">
-            <input type="hidden" th:value="${imageId}" name="imageId">
-            <table>
-                <tr>
-                    <td><input type="file" name="files" /></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" class="stdBtn" th:value="#{form.label.upload.submit}" /></td>
-                </tr>
-            </table>
+        фото из альбома конкретного пользователя
+        <form id="form_add_photo_at_album" th:action="@{/addPhoto/{albumId} (albumId = ${album.id})}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="text" name="title" placeholder="Название">
+            <input type="text" name="tags" placeholder="Теги">
+            <button id="add_album" type="submit">Add photo at album</button>
         </form>
     </div>
 </th:block>

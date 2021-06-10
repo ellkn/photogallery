@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS user
     `password`  varchar(64)  NOT NULL,
     `enabled`   bool,
     `role`      varchar(128) DEFAULT 'USER',
-    `imageid`   varchar(128),
+    `image`   varchar(128),
     PRIMARY KEY (`id`)
 );
 -- password 12345
@@ -43,12 +43,11 @@ CREATE TABLE IF NOT EXISTS comment
 );
 CREATE TABLE IF NOT EXISTS image
 (
-    `id` INT NOT NULL AUTO_INCREMENT,
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `title` VARCHAR(45) NOT NULL,
     `tags` VARCHAR(500) NULL,
     `file` VARCHAR(500) NOT NULL,
     `album_id` INT NULL,
-    PRIMARY KEY (`id`),
     INDEX `album_id_idx` (`album_id` ASC) VISIBLE,
     CONSTRAINT `album_id`
         FOREIGN KEY (`album_id`)

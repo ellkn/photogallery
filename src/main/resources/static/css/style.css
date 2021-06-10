@@ -220,13 +220,14 @@ text-input{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 40px;
+    padding: 0px 40px;
     text-align: center;
     top: 0;
     height: 100%;
     width: 50%;
     transform: translateX(0);
     transition: transform 0.6s ease-in-out;
+    overflow: auto;
 }
 
 .overlay-left {
@@ -446,5 +447,14 @@ form#logoutForm {
 
 .input_image{
     width: 100%;
+}
+
+.title_image{
+    font-weight: bold;
+}
+
+.image_in_album{
+    max-width: 200px;
+    max-height: 250px;
 }
 

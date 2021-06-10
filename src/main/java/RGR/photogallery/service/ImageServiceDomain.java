@@ -10,13 +10,16 @@ public class ImageServiceDomain implements ImageService{
     @Autowired
     ImageRepository imageRepository;
 
-    public void save(Image image){
+    @Override
+    public boolean addPhotoAlbum(Long albumId, String title, String tags, String file) {
+        Image image = new Image();
+
+        image.setAlbumId(albumId);
+        image.setTitle(title);
+        image.setFile(file);
+        image.setTags(tags);
+
         imageRepository.save(image);
-    }
-    public void delete(Image image) {
-        imageRepository.delete(image);
-    }
-    public Image findById(Long id){
-        return (id != null) ? imageRepository.loadById(id) : null;
+        return true;
     }
 }

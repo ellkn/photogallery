@@ -1,10 +1,13 @@
 package RGR.photogallery.controller;
 
 import RGR.photogallery.domain.Album;
+import RGR.photogallery.domain.Image;
 import RGR.photogallery.domain.User;
 import RGR.photogallery.repository.AlbumRepository;
+import RGR.photogallery.repository.ImageRepository;
 import RGR.photogallery.repository.UserRepository;
 import RGR.photogallery.service.AlbumService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -30,7 +34,8 @@ public class AlbumController {
     private AlbumRepository albumRepository;
 
     @Autowired
-    private AlbumRepository albumRepository;
+    private ImageRepository imageRepository;
+
 
     @GetMapping("/add_album_page")
     public ModelAndView addAlbumPage(ModelAndView model) {
@@ -54,17 +59,13 @@ public class AlbumController {
     }
 
     @GetMapping("/album/{id}")
-    public String albumPage(Model model, @PathVariable(name = "id") Long albumId) {
+    public ModelAndView albumPage(ModelAndView model, @PathVariable(name = "id") Long albumId) {
+        List<Image> imageList = imageRepository.findAllByAlbumId(albumId);
         Album album = albumRepository.findById(albumId).get();
-        model.addAttribute("album", album);
-        return "album";
-    }
-    @GetMapping("/album/{id}")
-    public String loadAlbum(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Optional<User> user = userRepository.findByEmail(auth.getName());
-        model.addAttribute("album", new Album());
-        return "album";
+        model.addObject("imageList", imageList);
+        model.addObject("album", album);
+        model.setViewName("album");
+        return model;
     }
 
 
